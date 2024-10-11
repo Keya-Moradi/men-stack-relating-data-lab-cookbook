@@ -28,19 +28,25 @@ router.get('/sign-in', (req, res) => {
 });
 
 router.post('/sign-in', async (req, res) => {
+  console.log('Sign-in attempt:', req.body); // Log user input
   try {
     const user = await User.findOne({ username: req.body.username });
+    
     if (!user) {
+      console.log('User not found');
       return res.redirect('/auth/sign-in'); // User not found
     }
+    
     if (user.password !== req.body.password) { // Password check
+      console.log('Wrong password');
       return res.redirect('/auth/sign-in'); // Wrong password
     }
+    
     req.session.user = user;
-    res.redirect('/'); // Redirect to home after signing in
+    res.redirect('/users/' + user._id + '/foods'); // Redirect to pantry after signing in
   } catch (err) {
     console.log(err);
-    res.redirect('/auth/sign-in');
+    res.redirect('/auth/sign-in'); // Redirect to sign-in on error
   }
 });
 

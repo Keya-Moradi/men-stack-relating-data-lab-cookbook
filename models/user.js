@@ -1,25 +1,27 @@
 const mongoose = require('mongoose');
 
-// Define foodSchema
 const foodSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
-// Define userSchema with embedded pantry (array of foodSchema)
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
-  pantry: [foodSchema], // Embedded foodSchema here
+  pantry: {
+    type: [foodSchema], // Define pantry as an array of food items
+    default: [] // Default to an empty array
+  }
 });
 
-// Export the User model
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;

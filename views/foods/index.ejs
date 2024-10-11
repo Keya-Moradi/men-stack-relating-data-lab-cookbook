@@ -9,8 +9,6 @@
   <%- include('../partials/_navbar.ejs') %>
   <h1>Welcome to My Pantry, <%= user.username %>!</h1>
 
-  <a href="/users/<%= user._id %>/foods/new">Add New Item</a>
-
   <h2>Your Pantry Items:</h2>
   <ul>
     <% if (pantry.length > 0) { %>
@@ -27,5 +25,7 @@
       <p>There are no items in your pantry.</p>
     <% } %>
   </ul>
+  
+  <a href="/users/<%= user._id %>/foods/new">Add New Item</a> <!-- Link to add new item -->
 </body>
 </html>
