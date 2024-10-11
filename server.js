@@ -8,7 +8,8 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
-const foodsController = require('./controllers/foods.js'); // Added foods controller
+const foodsController = require('./controllers/foods.js'); // Foods controller
+const usersController = require('./controllers/users.js'); // Users controller
 const isSignedIn = require('./middleware/is-signed-in.js'); // Middleware to restrict access
 const passUserToView = require('./middleware/pass-user-to-view.js'); // Middleware to pass user data
 
@@ -50,6 +51,7 @@ app.get('/vip-lounge', (req, res) => {
 
 app.use('/auth', authController);
 app.use(isSignedIn); // Ensure users are signed in before accessing their pantry
+app.use('/users', usersController); // Users controller for community operations
 app.use('/users/:userId/foods', foodsController); // Foods controller for pantry operations
 
 // Start the server
