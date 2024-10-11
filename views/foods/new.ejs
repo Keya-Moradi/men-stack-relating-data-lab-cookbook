@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add New Item</title>
+  <title>Add New Food Item</title>
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Add a New Food Item to Your Pantry</h1>
-
+  <h1>Add a New Food Item</h1>
   <form action="/users/<%= user._id %>/foods" method="POST">
     <label for="name">Food Name:</label>
-    <input type="text" name="name" required>
-    <button type="submit">Add Item</button>
+    <input type="text" name="name" id="name" required>
+    <button type="submit">Add Food</button>
   </form>
-
-  <a href="/users/<%= user._id %>/foods">Back to My Pantry</a>
+  <p><a href="/users/<%= user._id %>/foods">Back to Pantry</a></p>
 </body>
 </html>
