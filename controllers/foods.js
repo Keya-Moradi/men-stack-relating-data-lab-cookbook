@@ -9,7 +9,10 @@ router.get('/', (req, res) => {
       console.log(err);
       return res.redirect('/');
     }
-    res.render('foods/index.ejs', { pantry: user.pantry });
+    res.render('foods/index.ejs', { 
+      pantry: user.pantry, // passing the pantry array
+      user: user // passing the user object for sign-in/sign-out functionality
+    });
   });
 });
 
