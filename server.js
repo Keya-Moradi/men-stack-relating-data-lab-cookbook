@@ -8,10 +8,10 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
-const foodsController = require('./controllers/foods.js'); // Foods controller
-const usersController = require('./controllers/users.js'); // Users controller
-const isSignedIn = require('./middleware/is-signed-in.js'); // Middleware to restrict access
-const passUserToView = require('./middleware/pass-user-to-view.js'); // Middleware to pass user data
+const foodsController = require('./controllers/foods.js');
+const usersController = require('./controllers/users.js'); // Added users controller
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -51,7 +51,7 @@ app.get('/vip-lounge', (req, res) => {
 
 app.use('/auth', authController);
 app.use(isSignedIn); // Ensure users are signed in before accessing their pantry
-app.use('/users', usersController); // Users controller for community operations
+app.use('/users', usersController); // Use users controller for user-related routes
 app.use('/users/:userId/foods', foodsController); // Foods controller for pantry operations
 
 // Start the server

@@ -9,13 +9,13 @@ router.get('/', (req, res) => {
       console.log(err);
       return res.redirect('/');
     }
-    res.render('foods/index.ejs', { pantry: user.pantry });
+    res.render('foods/index.ejs', { pantry: user.pantry, user });
   });
 });
 
 // New route - display form to add a new food item
 router.get('/new', (req, res) => {
-  res.render('foods/new.ejs');
+  res.render('foods/new.ejs', { user: req.session.user });
 });
 
 // Create route - add new food item to user's pantry
@@ -62,7 +62,7 @@ router.get('/:itemId/edit', (req, res) => {
       return res.redirect('/');
     }
     const food = user.pantry.id(req.params.itemId);
-    res.render('foods/edit.ejs', { food });
+    res.render('foods/edit.ejs', { food, user });
   });
 });
 

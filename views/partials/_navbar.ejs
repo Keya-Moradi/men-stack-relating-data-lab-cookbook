@@ -1,0 +1,12 @@
+<nav>
+    <a href="/">Home</a>
+    <% if (user) { %>
+      <a href="/users/<%= user._id %>/foods">View My Pantry</a>
+      <a href="/users">Explore Community Users</a>
+      <a href="/auth/sign-out">Sign Out</a>
+      <a href="/users/<%= user._id %>/foods/new">Add New Item</a> <!-- Link to add new item -->
+    <% } else { %>
+      <a href="/auth/sign-in">Sign In</a>
+      <a href="/auth/sign-up">Sign Up</a>
+    <% } %>
+  </nav>
